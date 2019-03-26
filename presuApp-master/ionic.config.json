@@ -1,0 +1,8 @@
+{
+  "name": "presuApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "75627612"
+}

@@ -1,0 +1,16 @@
+// .toolbar-background,
+// ion-navbar,
+// ion-header {
+//   background-color: #1E656F !important;
+//   color: #fafafa;
+// }
+
+.toolbar-background {
+    --background: #1E656F;
+    --color: #fafafa;
+    --padding-button: 1rem;
+}
+
+.new-background-color {
+    --background: #54d61c;
+}

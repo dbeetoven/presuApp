@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar class="toolbar-background">
+    <ion-title text-center text-uppercase color="appcolor">
+        <ion-icon  slot="start" name="paper"></ion-icon>
+      PresuApp
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openCart()">
+        <ion-badge *ngIf="carts.length > 0">{{ carts.length }}</ion-badge>
+        <ion-icon slot="icon-only" name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngFor="let cat of items" class="category-block">
+    <ion-row no-padding class="category-banner">
+      <ion-col text-left button tappable (click)="cat.expanded = !cat.expanded" align-self-center>
+        {{ cat.category }}
+      </ion-col>
+    </ion-row>
+    <ion-slides [options]="sliderConfig">
+      <ion-slide *ngFor="let product of cat.products">
+        <div *ngIf="cat.expanded">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title text-capitalize>
+                {{ product.name }} - {{ product.unidad }}
+              </ion-card-title>
+              <ion-card-content>
+                <img src="https://via.placeholder.com/300x300">
+                <ion-button (click)="addToCart(product)">
+                  <ion-icon name="add-circle-outline"></ion-icon>
+                </ion-button>
+                <ion-button (click)="removeFromCart(product)">
+                  <ion-icon name="remove-circle-outline"></ion-icon>
+                </ion-button>
+              </ion-card-content>
+            </ion-card-header>
+          </ion-card>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </div>
+</ion-content>
