@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CartService } from './../cart.service';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Cart } from '../models/cart';
-import { element } from 'protractor';
+import { Unity } from '../models/unity';
+import { CartService } from './../cart.service';
 
 @Component({
     selector: 'app-cart',
@@ -14,12 +14,15 @@ export class CartPage implements OnInit, OnDestroy {
     total = 0;
     carts: Cart[];
     public carts$: Subject<any>;
+    public unities: Unity[];
+
 
     constructor(private cartService: CartService) {
         this.cartService.getCart().subscribe(carts => {
             this.carts = carts;
             this.getCarts();
         });
+        this.unities = cartService.getUnities();
     }
 
     getCarts() {
@@ -62,10 +65,10 @@ export class CartPage implements OnInit, OnDestroy {
         const elements = Object.keys(selected).map(key => selected[key]);
         const result = elements.map(e => (e.name = e.count + ': ' + e.name));
         return result.reduce((a, b) => {
-            return (a += ', ' + b);
+            return a += ', ' + b;
         });
     }
-    ngOnInit() {}
+    ngOnInit() { }
 
-    ngOnDestroy(): void {}
+    ngOnDestroy(): void { }
 }
